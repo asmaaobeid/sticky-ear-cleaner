@@ -483,12 +483,8 @@ document.querySelectorAll('.nav a').forEach((link) => {
 })
 
 async function init() {
-async function init() {
   await loadSettings()
   applyLanguage(currentLang)
-}
-
-init()
 }
 
 init()
