@@ -187,6 +187,8 @@ export const translations = {
     order_copied: 'Copied!',
     order_hint:
       'Order is saved for the store. WhatsApp opens with name, phone, address, and pack already filled.',
+    order_hint_ig:
+      'Your order message is copied. Instagram opens so you can paste it in a DM to @myearglow.',
     order_sending: 'Sending…',
     float_wa: 'WhatsApp',
     menu_open: 'Open menu',
@@ -378,6 +380,8 @@ export const translations = {
     order_copy: 'نسخ الرسالة',
     order_copied: 'تم النسخ!',
     order_hint: 'يُحفظ الطلب للمتجر. يفتح واتساب مع الاسم والهاتف والعنوان والباقة جاهزة.',
+    order_hint_ig:
+      'يتم نسخ رسالة الطلب. يفتح إنستغرام لتلصقها في رسالة مباشرة إلى @myearglow.',
     order_sending: 'جاري الإرسال…',
     float_wa: 'واتساب',
     menu_open: 'فتح القائمة',
