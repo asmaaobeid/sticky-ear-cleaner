@@ -482,5 +482,13 @@ document.querySelectorAll('.nav a').forEach((link) => {
   })
 })
 
-await loadSettings()
-applyLanguage(currentLang)
+async function init() {
+async function init() {
+  await loadSettings()
+  applyLanguage(currentLang)
+}
+
+init()
+}
+
+init()
