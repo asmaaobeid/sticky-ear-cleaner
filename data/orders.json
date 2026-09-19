@@ -1,0 +1,30 @@
+[
+  {
+    "id": "ord_1789831955303_cvo9y",
+    "createdAt": "2026-09-19T15:32:35.303Z",
+    "status": "new",
+    "offerId": "2",
+    "offerTitle": "2 Boxes Bundle",
+    "price": "$24",
+    "compare": "$30",
+    "customerName": "T",
+    "phone": "+96170526151",
+    "address": "القلمون ،مقابل المسجد الغربي ،بجانب مدرسة الصبيان ،بناية حسن عبيد ،منزل أيمن حسن عبيد ،طابق رابع،فوق محل هشام عبيد",
+    "message": "Hi! I want to order 2 Boxes Hot Sale — $24 (was $30).\n\nName: T\nPhone: +96170526151\nAddress: القلمون ،مقابل المسجد الغربي ،بجانب مدرسة الصبيان ،بناية حسن عبيد ،منزل أيمن حسن عبيد ،طابق رابع،فوق محل هشام عبيد",
+    "lang": "en"
+  },
+  {
+    "id": "ord_1789827736554_lpk7f",
+    "createdAt": "2026-09-19T14:22:16.554Z",
+    "status": "done",
+    "offerId": "1",
+    "offerTitle": "1 Box Sticky Ear Cleaner",
+    "price": "$15",
+    "compare": "$16",
+    "customerName": "Yy",
+    "phone": "+96170526151",
+    "address": "القلمون ،مقابل المسجد الغربي ،بجانب مدرسة الصبيان ،بناية حسن عبيد ،منزل أيمن حسن عبيد ،طابق رابع،فوق محل هشام عبيد",
+    "message": "Hi! I want to order 1 Box Best Sale — $15 (was $16).\n\nName: Yy\nPhone: +96170526151\nAddress: القلمون ،مقابل المسجد الغربي ،بجانب مدرسة الصبيان ،بناية حسن عبيد ،منزل أيمن حسن عبيد ،طابق رابع،فوق محل هشام عبيد",
+    "lang": "en"
+  }
+]

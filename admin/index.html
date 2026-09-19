@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin — My Ear Glow</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/admin/admin.css" />
+  </head>
+  <body>
+    <div id="login-view" class="login-view">
+      <form class="login-card" id="login-form">
+        <p class="eyebrow">My Ear Glow</p>
+        <h1>Admin login</h1>
+        <p class="muted">Manage offers, content, and customer orders.</p>
+        <label>
+          Password
+          <input type="password" id="login-password" required autocomplete="current-password" />
+        </label>
+        <label class="check-row">
+          <input type="checkbox" id="show-login-pass" />
+          Show what I type
+        </label>
+        <button type="submit" class="btn">Sign in</button>
+        <p class="error" id="login-error" hidden>Wrong password</p>
+        <p class="hint" id="saved-pass-box" hidden>
+          Saved password: <code id="saved-pass-value"></code>
+        </p>
+        <button type="button" class="btn ghost" id="reveal-pass-btn">
+          Show saved password
+        </button>
+        <button type="button" class="btn ghost" id="reset-pass-btn">
+          Reset to admin123
+        </button>
+      </form>
+    </div>
+
+    <div id="admin-view" class="admin-view" hidden>
+      <header class="admin-header">
+        <div>
+          <strong>My Ear Glow Admin</strong>
+          <a href="/" target="_blank" rel="noopener">View site</a>
+        </div>
+        <nav class="admin-tabs">
+          <button type="button" class="tab is-active" data-tab="orders">Orders</button>
+          <button type="button" class="tab" data-tab="offers">Offers & prices</button>
+          <button type="button" class="tab" data-tab="content">Site content</button>
+        </nav>
+        <button type="button" class="btn ghost" id="logout-btn">Log out</button>
+      </header>
+
+      <main class="admin-main">
+        <section class="panel is-active" id="panel-orders">
+          <div class="panel-head">
+            <h2>Orders</h2>
+            <button type="button" class="btn ghost" id="refresh-orders">Refresh</button>
+          </div>
+          <div class="stats" id="order-stats"></div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Customer</th>
+                  <th>Phone</th>
+                  <th>Address</th>
+                  <th>Offer</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="orders-body">
+                <tr>
+                  <td colspan="7">No orders yet</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel" id="panel-offers">
+          <div class="panel-head">
+            <h2>Offers & prices</h2>
+            <button type="button" class="btn" id="save-offers">Save offers</button>
+          </div>
+          <div class="grid-2" id="offers-form"></div>
+          <p class="save-msg" id="offers-msg" hidden>Saved</p>
+        </section>
+
+        <section class="panel" id="panel-content">
+          <div class="panel-head">
+            <h2>Site content & contact</h2>
+            <button type="button" class="btn" id="save-content">Save content</button>
+          </div>
+          <div class="form-grid" id="content-form">
+            <label>Brand <input id="f-brand" /></label>
+            <label>Instagram username <input id="f-instagram" /></label>
+            <label
+              >WhatsApp (961… no +)
+              <input id="f-whatsapp" placeholder="96170123456"
+            /></label>
+            <label
+              >Admin password (current)
+              <input id="f-password" type="text" autocomplete="off" />
+            </label>
+            <p class="hint full" id="pass-hint">
+              This field shows the saved password. Change it and click Save to update.
+            </p>
+            <label>Announce live EN <input id="f-live-en" /></label>
+            <label>Announce live AR <input id="f-live-ar" /></label>
+            <label>Announce label EN <input id="f-ann-en" /></label>
+            <label>Announce label AR <input id="f-ann-ar" /></label>
+            <label>Hero title EN <input id="f-hero-en" /></label>
+            <label>Hero title AR <input id="f-hero-ar" /></label>
+            <label class="full"
+              >Hero text EN
+              <textarea id="f-lead-en" rows="3"></textarea>
+            </label>
+            <label class="full"
+              >Hero text AR
+              <textarea id="f-lead-ar" rows="3"></textarea>
+            </label>
+          </div>
+          <p class="save-msg" id="content-msg" hidden>Saved</p>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/admin/admin.js"></script>
+  </body>
+</html>
