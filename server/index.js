@@ -76,14 +76,14 @@ async function start() {
 
   app.get('/api/admin/reveal-password', async (_req, res) => {
     const settings = await readJson(settingsPath, {})
-    res.json({ password: settings.adminPassword || 'admin123' })
+    res.json({ password: settings.adminPassword || 'admin@123#!' })
   })
 
   app.post('/api/admin/reset-password', async (_req, res) => {
     const settings = await readJson(settingsPath, {})
-    settings.adminPassword = 'admin123'
+    settings.adminPassword = 'admin@123#!'
     await writeJson(settingsPath, settings)
-    res.json({ ok: true, password: 'admin123' })
+    res.json({ ok: true, password: 'admin@123#!' })
   })
 
   app.get('/api/orders', async (req, res) => {

@@ -11,7 +11,7 @@ npm run dev
 - Site: http://localhost:5173/
 - Admin: http://localhost:5173/admin
 - Phone (same Wi‑Fi): http://192.168.1.7:5173/
-- Admin password (default): `admin123`
+- Admin password (default): `admin@123#!`
 
 ## What admin can do
 
