@@ -5,7 +5,7 @@ const LANG_KEY = 'myearglow-lang'
 let settings = null
 let currentLang = localStorage.getItem(LANG_KEY) || 'en'
 let currentOffer = '1'
-let preferredChannel = 'ig'
+let preferredChannel = 'wa'
 
 function offerData(id = currentOffer) {
   return settings?.offers?.[String(id)] || settings?.offers?.['1'] || {}
@@ -35,7 +35,7 @@ async function loadSettings() {
     settings = {
       brand: 'My Ear Glow',
       instagram: 'myearglow',
-      whatsapp: '',
+      whatsapp: '96179460039',
       offers: {
         1: {
           compare: '$16',
