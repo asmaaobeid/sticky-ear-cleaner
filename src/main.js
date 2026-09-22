@@ -297,6 +297,14 @@ function fillOrderPanel(offerId = currentOffer) {
   if (orderSendWaBtn) orderSendWaBtn.textContent = t(currentLang, 'order_send_wa')
 }
 
+function trackPixel(event, data) {
+  try {
+    if (typeof window.fbq === 'function') window.fbq('track', event, data || {})
+  } catch {
+    /* ignore */
+  }
+}
+
 function hasWhatsAppNumber() {
   return Boolean(String(settings?.whatsapp || '').replace(/\D/g, ''))
 }
@@ -311,6 +319,13 @@ function openOrderPanel(offerId = currentOffer, channel = preferredChannel) {
   orderModal.hidden = false
   requestAnimationFrame(() => orderModal.classList.add('is-open'))
   document.body.classList.add('modal-open')
+  const offer = offerData(offerId)
+  trackPixel('InitiateCheckout', {
+    content_name: offer.title_en || `Offer ${offerId}`,
+    content_ids: [String(offerId)],
+    value: Number(String(offer.now || '').replace(/[^0-9.]/g, '')) || undefined,
+    currency: 'USD',
+  })
 }
 
 function closeOrderPanel() {
@@ -370,6 +385,21 @@ async function sendOrder(channel = preferredChannel) {
   } else {
     window.open(igDm(), '_blank', 'noopener,noreferrer')
   }
+
+  const offer = offerData(currentOffer)
+  const value = Number(String(offer.now || '').replace(/[^0-9.]/g, '')) || 0
+  trackPixel('Lead', {
+    content_name: offer.title_en || `Offer ${currentOffer}`,
+    content_ids: [String(currentOffer)],
+    value,
+    currency: 'USD',
+  })
+  trackPixel('Purchase', {
+    content_name: offer.title_en || `Offer ${currentOffer}`,
+    content_ids: [String(currentOffer)],
+    value,
+    currency: 'USD',
+  })
 
   closeOrderPanel()
   ;[orderSendBtn, orderSendWaBtn].forEach((btn) => {
