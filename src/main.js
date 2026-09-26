@@ -77,7 +77,7 @@ function applySettingsToDom() {
   const o2 = settings.offers['2']
   const ar = currentLang === 'ar'
 
-  document.querySelectorAll('.logo, .brand-mark, .footer-logo').forEach((el) => {
+  document.querySelectorAll('.logo-text, .brand-mark, .footer-logo-text').forEach((el) => {
     if (el && settings.brand) el.textContent = settings.brand
   })
 

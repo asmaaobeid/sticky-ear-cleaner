@@ -370,9 +370,21 @@ html[dir="rtl"] .float-stack {
 }
 
 .logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   font-weight: 800;
   font-size: 1.05rem;
   color: var(--teal-deep);
+}
+
+.logo-mark {
+  width: 2rem;
+  height: 2rem;
+  object-fit: cover;
+  border-radius: 0.45rem;
+  flex-shrink: 0;
+  background: #eaf3ff;
 }
 
 .header-actions {
@@ -1375,7 +1387,9 @@ details code {
 }
 
 .footer-logo {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
   font-family: var(--font-display);
   font-size: 1.35rem;
   font-weight: 800;
