@@ -530,6 +530,44 @@ document.querySelectorAll('.nav a').forEach((link) => {
 async function init() {
   await loadSettings()
   applyLanguage(currentLang)
+  setupRevealAnimations()
+}
+
+function setupRevealAnimations() {
+  const targets = document.querySelectorAll(
+    '.pitch, .hot-sale .section-intro, .sale-card, .ig-order, .product, .icon-strip, .compare, .how, .story, .specs, .soft-proof, .guarantee, .faq',
+  )
+  if (!targets.length) return
+
+  targets.forEach((el, index) => {
+    el.classList.add('reveal')
+    if (el.classList.contains('sale-card')) {
+      el.classList.add(index % 2 === 0 ? 'reveal-delay-1' : 'reveal-delay-2')
+      if (el.classList.contains('featured')) el.classList.add('reveal-scale')
+    }
+    if (el.classList.contains('ig-order')) el.classList.add('reveal-delay-1')
+    if (el.classList.contains('compare') || el.classList.contains('how')) {
+      el.classList.add(index % 2 === 0 ? 'reveal-left' : 'reveal-right')
+    }
+  })
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    targets.forEach((el) => el.classList.add('is-in'))
+    return
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return
+        entry.target.classList.add('is-in')
+        observer.unobserve(entry.target)
+      })
+    },
+    { threshold: 0.16, rootMargin: '0px 0px -8% 0px' },
+  )
+
+  targets.forEach((el) => observer.observe(el))
 }
 
 init()
