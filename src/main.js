@@ -169,30 +169,36 @@ function applySettingsToDom() {
     btn.querySelector('strong') && (btn.querySelector('strong').textContent = o2.now)
   })
 
-  // Contact links — Instagram by default until a WhatsApp number is set
+  // WhatsApp is the order channel; Instagram stays as a social reference
   const ig = settings.instagram || 'myearglow'
   const waPhone = String(settings.whatsapp || '').replace(/\D/g, '')
   const hasWhatsApp = Boolean(waPhone)
-  if (!hasWhatsApp) preferredChannel = 'ig'
+  preferredChannel = hasWhatsApp ? 'wa' : 'ig'
 
-  document.querySelectorAll('a[href*="ig.me"], a[href*="instagram.com"]').forEach((a) => {
-    if (a.classList.contains('float-wa')) return
-    if (a.href.includes('ig.me') || a.getAttribute('href')?.includes('ig.me')) {
-      a.href = `https://ig.me/m/${ig}`
-    }
+  document.querySelectorAll('a[href*="instagram.com"]').forEach((a) => {
+    if (a.classList.contains('js-dm-current') || a.hasAttribute('data-dm-offer')) return
+    a.href = `https://www.instagram.com/${ig}`
   })
+  document.querySelectorAll('[data-ig-handle]').forEach((el) => {
+    el.textContent = `@${ig}`
+  })
+
   const floatWa = document.getElementById('float-wa')
   if (floatWa) {
     floatWa.hidden = !hasWhatsApp
     floatWa.href = hasWhatsApp ? `https://wa.me/${waPhone}` : '#'
   }
   if (orderSendWaBtn) orderSendWaBtn.hidden = !hasWhatsApp
+  if (orderSendBtn) orderSendBtn.hidden = true
   const orderHint = document.querySelector('.order-hint')
   if (orderHint) {
     orderHint.setAttribute('data-i18n', hasWhatsApp ? 'order_hint' : 'order_hint_ig')
   }
   const floatOrder = document.getElementById('float-order')
-  if (floatOrder) floatOrder.href = `https://ig.me/m/${ig}`
+  if (floatOrder) {
+    floatOrder.href = hasWhatsApp ? `https://wa.me/${waPhone}` : '#'
+    floatOrder.setAttribute('data-channel', hasWhatsApp ? 'wa' : 'ig')
+  }
 
   setOffer(currentOffer)
 }
@@ -294,7 +300,10 @@ function fillOrderPanel(offerId = currentOffer) {
     `
   }
   if (orderMessage) orderMessage.value = offerMessage(offerId)
-  if (orderSendBtn) orderSendBtn.textContent = t(currentLang, 'order_send_ig')
+  if (orderSendBtn) {
+    orderSendBtn.hidden = true
+    orderSendBtn.textContent = t(currentLang, 'order_send_ig')
+  }
   if (orderSendWaBtn) orderSendWaBtn.textContent = t(currentLang, 'order_send_wa')
 }
 
@@ -311,8 +320,8 @@ function hasWhatsAppNumber() {
 }
 
 function openOrderPanel(offerId = currentOffer, channel = preferredChannel) {
-  const wantWa = channel === 'wa' && hasWhatsAppNumber()
-  preferredChannel = wantWa ? 'wa' : 'ig'
+  const wantWa = hasWhatsAppNumber() && channel !== 'ig'
+  preferredChannel = wantWa ? 'wa' : hasWhatsAppNumber() ? 'wa' : 'ig'
   setOffer(offerId)
   fillOrderPanel(offerId)
   if (orderError) orderError.hidden = true
@@ -353,7 +362,7 @@ async function sendOrder(channel = preferredChannel) {
   if (orderError) orderError.hidden = true
 
   const message = buildCustomerMessage(currentOffer)
-  const useWa = channel !== 'ig' && hasWhatsAppNumber()
+  const useWa = hasWhatsAppNumber()
   const activeBtn = useWa ? orderSendWaBtn : orderSendBtn
   const prevLabel = activeBtn?.textContent
   ;[orderSendBtn, orderSendWaBtn].forEach((btn) => {
