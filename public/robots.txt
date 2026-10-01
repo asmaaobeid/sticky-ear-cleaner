@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+
+Sitemap: https://sticky-ear-cleaner.earglow.workers.dev/sitemap.xml
