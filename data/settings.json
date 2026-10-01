@@ -34,17 +34,17 @@
     }
   },
   "announce": {
-    "live_en": "Sale live",
-    "live_ar": "العرض مباشر",
+    "live_en": "Hurry — sale ends tonight!",
+    "live_ar": "أسرع — العرض ينتهي الليلة!",
     "label_en": "Hot Sale",
     "label_ar": "عرض ساخن",
     "cta_en": "Shop now",
     "cta_ar": "تسوق الآن"
   },
   "hero": {
-    "h1_en": "A smarter way to clean your ears",
-    "h1_ar": "طريقة أذكى لتنظيف أذنيك",
-    "lead_en": "Soft sticky tips lift wax gently — safer, cleaner, and more comfortable than cotton swabs.",
-    "lead_ar": "رؤوس لاصقة ناعمة ترفع الشمع بلطف — أكثر أماناً ونظافة وراحة من الأعواد القطنية."
+    "h1_en": "Feel clean 24/7",
+    "h1_ar": "نظافة تدوم طوال اليوم",
+    "lead_en": "Soft sticky tips grab and lift wax gently — no pushing, no mess. Safer than cotton swabs.",
+    "lead_ar": "رؤوس لاصقة ناعمة تمسك الشمع وترفعه بلطف — بلا دفع ولا فوضى. أكثر أماناً من الأعواد القطنية."
   }
 }

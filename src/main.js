@@ -88,6 +88,7 @@ function applySettingsToDom() {
   }
 
   if (settings.announce) {
+    setText('[data-i18n="announce_urgency"]', ar ? settings.announce.live_ar : settings.announce.live_en)
     setText('[data-i18n="announce_live"]', ar ? settings.announce.live_ar : settings.announce.live_en)
     setText('[data-i18n="announce_label"]', ar ? settings.announce.label_ar : settings.announce.label_en)
     setText('[data-i18n="announce_cta"]', ar ? settings.announce.cta_ar : settings.announce.cta_en)

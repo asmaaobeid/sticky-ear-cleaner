@@ -1,21 +1,21 @@
 /* Sticky Ear Cleaner — clinical-chic DTC landing */
 
 :root {
-  --teal: #00a8b8;
-  --teal-deep: #007a88;
-  --teal-soft: #d7f4f7;
-  --teal-wash: #eef9fa;
-  --navy: #0f2a33;
-  --ink: #16343d;
-  --muted: #5a737c;
-  --line: rgba(15, 42, 51, 0.12);
+  --teal: #2eb8c6;
+  --teal-deep: #1a9eac;
+  --teal-soft: #d8f4f7;
+  --teal-wash: #f4fbfc;
+  --navy: #1b2b31;
+  --ink: #24363c;
+  --muted: #5f7379;
+  --line: rgba(27, 43, 49, 0.1);
   --white: #ffffff;
   --bad: #b42318;
   --bad-soft: #f8e8e6;
   --good: #067a4a;
-  --shadow: 0 24px 60px rgba(0, 90, 100, 0.14);
+  --shadow: 0 18px 48px rgba(26, 158, 172, 0.16);
   --radius: 1.25rem;
-  --font-display: "Syne", "Noto Sans Arabic", sans-serif;
+  --font-display: "Trirong", "Noto Sans Arabic", Georgia, serif;
   --font-body: "Figtree", "Noto Sans Arabic", sans-serif;
   --max: 1120px;
 }
@@ -47,10 +47,7 @@ body {
   margin: 0;
   font-family: var(--font-body);
   color: var(--ink);
-  background:
-    radial-gradient(1200px 600px at 10% -10%, rgba(0, 168, 184, 0.18), transparent 55%),
-    radial-gradient(900px 500px at 100% 0%, rgba(0, 122, 136, 0.12), transparent 50%),
-    linear-gradient(180deg, #f7fcfd 0%, #ffffff 35%, #f3fafb 100%);
+  background: #ffffff;
   line-height: 1.55;
   overflow-x: hidden;
   padding-bottom: 5rem;
@@ -81,14 +78,18 @@ h3,
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 0.55rem 0.75rem;
+  gap: 0.55rem 0.85rem;
   text-align: center;
-  background: linear-gradient(90deg, #062229 0%, #0a3a44 45%, #0d4f5a 100%);
+  background: var(--teal);
   color: #ffffff;
-  font-size: 0.88rem;
-  font-weight: 700;
-  padding: 0.7rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.65rem 1rem;
   border-bottom: none;
+}
+
+.announce-urgency {
+  letter-spacing: 0.01em;
 }
 
 .announce-live {
@@ -363,9 +364,8 @@ html[dir="rtl"] .float-stack {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 0.85rem clamp(1rem, 4vw, 2rem);
-  background: rgba(255, 255, 255, 0.86);
-  backdrop-filter: blur(14px);
+  padding: 0.95rem clamp(1rem, 4vw, 2rem);
+  background: #ffffff;
   border-bottom: 1px solid var(--line);
 }
 
@@ -373,9 +373,11 @@ html[dir="rtl"] .float-stack {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  font-family: var(--font-body);
   font-weight: 800;
   font-size: 1.05rem;
   color: var(--teal-deep);
+  letter-spacing: -0.02em;
 }
 
 .logo-mark {
@@ -463,9 +465,9 @@ html[dir="rtl"] .float-stack {
 
 .hero {
   position: relative;
-  min-height: min(92vh, 820px);
+  min-height: min(88vh, 760px);
   display: grid;
-  align-items: end;
+  place-items: center;
   overflow: hidden;
 }
 
@@ -478,48 +480,51 @@ html[dir="rtl"] .float-stack {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 40%;
-  transform: scale(1.04);
-  animation: heroDrift 14s ease-in-out infinite alternate;
+  object-position: center 35%;
+  transform: scale(1.02);
 }
 
 .hero-wash {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(8, 40, 48, 0.15) 0%, rgba(8, 40, 48, 0.55) 55%, rgba(8, 40, 48, 0.82) 100%),
-    linear-gradient(90deg, rgba(0, 90, 100, 0.35), transparent 55%);
+    linear-gradient(180deg, rgba(15, 40, 46, 0.22) 0%, rgba(15, 40, 46, 0.45) 55%, rgba(15, 40, 46, 0.62) 100%);
 }
 
 .hero-content {
   position: relative;
   z-index: 1;
   width: min(var(--max), calc(100% - 2rem));
-  margin: 0 auto 4.5rem;
+  margin: 0 auto;
   color: var(--white);
-  max-width: 36rem;
+  max-width: 40rem;
+  text-align: center;
   animation: riseIn 0.9s ease both;
 }
 
 .brand-mark {
-  margin: 0 0 0.75rem;
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
-  font-weight: 800;
-  color: #9ef0f8;
+  margin: 0 0 0.85rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.92);
 }
 
 .hero h1 {
-  margin: 0 0 0.9rem;
-  font-size: clamp(2rem, 5vw, 3.4rem);
-  font-weight: 700;
+  margin: 0 auto 0.95rem;
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  font-weight: 600;
   max-width: 12ch;
+  letter-spacing: -0.02em;
 }
 
 .hero-lead {
-  margin: 0 0 1.5rem;
+  margin: 0 auto 1.6rem;
   font-size: 1.08rem;
-  color: rgba(255, 255, 255, 0.88);
-  max-width: 34ch;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 38ch;
 }
 
 .hero-actions,
@@ -529,6 +534,7 @@ html[dir="rtl"] .float-stack {
   flex-wrap: wrap;
   gap: 0.75rem;
   align-items: center;
+  justify-content: center;
 }
 
 .btn {
@@ -558,11 +564,21 @@ html[dir="rtl"] .float-stack {
 .btn-primary {
   background: var(--teal);
   color: var(--white);
-  box-shadow: 0 12px 30px rgba(0, 168, 184, 0.35);
+  box-shadow: 0 12px 30px rgba(46, 184, 198, 0.32);
 }
 
 .btn-primary:hover {
   background: var(--teal-deep);
+}
+
+.btn-hero {
+  background: #ffffff;
+  color: var(--teal-deep);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+}
+
+.btn-hero:hover {
+  background: #f4fbfc;
 }
 
 .btn-wa {
@@ -593,6 +609,31 @@ html[dir="rtl"] .float-stack {
 .hot-sale {
   width: min(var(--max), calc(100% - 2rem));
   margin-inline: auto;
+}
+
+.pitch {
+  background: #ffffff;
+  padding: 4.5rem 1rem 2.5rem;
+  text-align: center;
+}
+
+.pitch-inner {
+  width: min(42rem, calc(100% - 0.5rem));
+  margin: 0 auto;
+}
+
+.pitch h2 {
+  margin: 0 0 1rem;
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.pitch p {
+  margin: 0;
+  font-size: 1.08rem;
+  color: var(--muted);
+  line-height: 1.65;
 }
 
 .product {
