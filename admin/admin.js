@@ -32,9 +32,12 @@ async function api(path, options = {}) {
 
 function showAdmin() {
   loginView.hidden = true
+  loginView.setAttribute('hidden', '')
   loginView.style.display = 'none'
   adminView.hidden = false
+  adminView.removeAttribute('hidden')
   adminView.style.display = 'block'
+  window.scrollTo({ top: 0, left: 0, behavior: 'instant' in window ? 'instant' : 'auto' })
 }
 
 function showLogin() {
