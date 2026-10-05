@@ -127,6 +127,12 @@ function applySettingsToDom() {
     const h3 = card.querySelector('h3')
     if (h3) h3.textContent = ar ? offer.title_ar : offer.title_en
     card.querySelectorAll('.price-was').forEach((el) => {
+      const fixed = el.getAttribute('data-fixed-compare')
+      if (fixed) {
+        el.hidden = false
+        el.textContent = fixed
+        return
+      }
       const show = Boolean(offer.compare && offer.compare !== offer.now)
       el.hidden = !show
       el.textContent = offer.compare || ''
