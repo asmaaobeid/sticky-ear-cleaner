@@ -600,13 +600,25 @@ html[dir="rtl"] .float-stack {
   max-width: 38ch;
 }
 
+.hero-local {
+  margin: 0 auto 0.65rem;
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: 0.02em;
+}
+
 .hero-price {
   margin: 0 auto 0.55rem;
   font-family: var(--font-display, inherit);
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: clamp(1.05rem, 2.8vw, 1.25rem);
+  font-weight: 800;
   color: #fff;
-  max-width: 40ch;
+  max-width: 46ch;
+  padding: 0.55rem 0.9rem;
+  border-radius: 0.75rem;
+  background: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.28);
 }
 
 .hero-confirm {

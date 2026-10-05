@@ -48,9 +48,9 @@ const DEFAULT_SETTINGS = {
   },
   topbar: {
     text_en:
-      'Free delivery across Lebanon · From $15 · 2 boxes $24 · Cash on delivery · Based in Tripoli',
+      'From Tripoli → Lebanon 🇱🇧 · 2 Boxes $24 · Save $6 · Free gift · Free delivery · COD',
     text_ar:
-      'توصيل مجاني في كل لبنان · من $15 · علبتان $24 · الدفع عند الاستلام · من طرابلس',
+      'من طرابلس → لبنان 🇱🇧 · علبتان $24 · وفّر ٦$ · هدية مجانية · توصيل مجاني · دفع عند الاستلام',
   },
   hero: {
     h1_en: 'Sticky Ear Cleaner — Feel clean 24/7',

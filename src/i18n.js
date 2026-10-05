@@ -14,7 +14,7 @@ export const translations = {
     announce_deal2_label: '2 boxes',
     announce_cta: 'Order now',
     topbar_text:
-      'Free delivery across Lebanon · From $15 · 2 boxes $24 · Cash on delivery · Based in Tripoli',
+      'From Tripoli → Lebanon 🇱🇧 · 2 Boxes $24 · Save $6 · Free gift · Free delivery · COD',
     nav_hot: 'Hot Sale',
     nav_pin: 'Hot',
     nav_shop: 'Shop',
@@ -23,19 +23,21 @@ export const translations = {
     nav_faq: 'FAQ',
     order_now: 'Order now',
     order_cod: 'Place order — pay on delivery',
+    order_cod_bundle: 'Order 2 boxes — $24 · Pay on delivery',
     order_ig: 'Order now on Instagram',
     order_wa: 'Order on WhatsApp',
     order_wa_secondary: 'Or message on WhatsApp',
     view_hot: 'View Hot Sale',
+    hero_local: 'From Tripoli → Delivered across Lebanon 🇱🇧',
     hero_lead:
       'Soft sticky tips grab and lift wax gently — no pushing, no mess. A gentler everyday alternative to cotton swabs.',
-    hero_price: 'From $15 · Cash on delivery · Free delivery · Free gift',
+    hero_price: '2 Boxes — $24 — Save $6 + Free Gift + Free Delivery + COD',
     hero_confirm: 'Fill the short form (~2 minutes). We confirm on WhatsApp, then ship — you pay nothing now.',
     pitch_h2: 'Ditch the Q-Tips',
     pitch_p:
       'Cotton swabs often push wax deeper — you already know that. Sticky Ear Cleaner’s soft tip grabs and pulls wax out in one gentle twist. No scratching, no pushing, no mess.',
     about_eyebrow: 'Local business',
-    about_h2: 'Based in Tripoli · Delivering across Lebanon',
+    about_h2: 'From Tripoli → Delivered across Lebanon 🇱🇧',
     about_p:
       'My Ear Glow ships Sticky Ear Cleaner from Tripoli to every area in Lebanon. Cash on delivery, free delivery, and WhatsApp support at +961 79 460 039.',
     about_1: 'Tripoli, Lebanon',
@@ -282,7 +284,7 @@ export const translations = {
     announce_deal2_label: 'علبتان',
     announce_cta: 'اطلب الآن',
     topbar_text:
-      'توصيل مجاني في كل لبنان · من $15 · علبتان $24 · الدفع عند الاستلام · من طرابلس',
+      'من طرابلس → لبنان 🇱🇧 · علبتان $24 · وفّر ٦$ · هدية مجانية · توصيل مجاني · دفع عند الاستلام',
     nav_hot: 'العروض',
     nav_pin: 'ساخن',
     nav_shop: 'تسوق',
@@ -291,14 +293,16 @@ export const translations = {
     nav_faq: 'أسئلة',
     order_now: 'اطلب الآن',
     order_cod: 'اطلب الآن — ادفع عند الاستلام',
+    order_cod_bundle: 'اطلب علبتين — $24 · ادفع عند الاستلام',
     order_ig: 'اطلب الآن عبر إنستغرام',
     order_wa: 'اطلب عبر واتساب',
     order_wa_secondary: 'أو راسلنا على واتساب',
     view_hot: 'شاهد العروض',
     hero_h1: 'منظف الأذن اللاصق — نظافة تدوم طوال اليوم',
+    hero_local: 'من طرابلس → توصيل لكل لبنان 🇱🇧',
     hero_lead:
       'رؤوس لاصقة ناعمة تمسك الشمع وترفعه بلطف — بلا دفع ولا فوضى. بديل يومي ألطف من الأعواد القطنية.',
-    hero_price: 'من $15 · الدفع عند الاستلام · توصيل مجاني · هدية مجانية',
+    hero_price: 'علبتان — $24 — وفّر ٦$ + هدية مجانية + توصيل مجاني + دفع عند الاستلام',
     hero_confirm: 'عبّئ النموذج القصير (~دقيقتان). نؤكد على واتساب ثم نشحن — لا تدفع شيئاً الآن.',
     pitch_h2: 'اترك الأعواد القطنية',
     pitch_p:
@@ -306,7 +310,7 @@ export const translations = {
     seo_blurb:
       'تبحث عن منظف أذن لاصق في لبنان؟ ماي إير جلو من طرابلس يوصّل رؤوس سيليكا جل ناعمة لإزالة الشمع في كل لبنان مع توصيل مجاني والدفع عند الاستلام. اطلب خلال دقيقتين تقريباً واحصل على هدية مجانية مع كل طلب، وعادة يصل خلال ١–٣ أيام عمل.',
     about_eyebrow: 'متجر محلي',
-    about_h2: 'من طرابلس · توصيل لكل لبنان',
+    about_h2: 'من طرابلس → توصيل لكل لبنان 🇱🇧',
     about_p:
       'ماي إير جلو يشحن منظف الأذن اللاصق من طرابلس إلى كل المناطق في لبنان. الدفع عند الاستلام، توصيل مجاني، ودعم واتساب على +٩٦١ ٧٩ ٤٦٠ ٠٣٩.',
     about_1: 'طرابلس، لبنان',
