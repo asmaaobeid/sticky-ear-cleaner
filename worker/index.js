@@ -30,12 +30,12 @@ const DEFAULT_SETTINGS = {
       badge_ar: 'أفضل قيمة',
       label_en: '2 boxes',
       label_ar: 'علبتان',
-      meta_en: 'Save $6 vs buying two singles · Free gift',
-      meta_ar: 'وفّر ٦$ مقارنة بعلبتين منفصلتين · هدية مجانية',
+      meta_en: 'Save $6 vs buying two singles · Free delivery · COD',
+      meta_ar: 'وفّر ٦$ مقارنة بعلبتين منفصلتين · توصيل مجاني · دفع عند الاستلام',
       dm_en:
-        'Hi! I want to order 2 Boxes Sticky Ear Cleaner — $24. Cash on delivery + free gift please. Based in Tripoli, ships across Lebanon.',
+        'Hi! I want to order 2 Boxes Sticky Ear Cleaner — $24. Cash on delivery please. Based in Tripoli, ships across Lebanon.',
       dm_ar:
-        'مرحبا! أريد طلب علبتين منظف الأذن اللاصق — $24. الدفع عند الاستلام + هدية مجانية من فضلك. من طرابلس، توصيل لكل لبنان.',
+        'مرحبا! أريد طلب علبتين منظف الأذن اللاصق — $24. الدفع عند الاستلام من فضلك. من طرابلس، توصيل لكل لبنان.',
     },
   },
   announce: {
@@ -48,9 +48,9 @@ const DEFAULT_SETTINGS = {
   },
   topbar: {
     text_en:
-      'From Tripoli → Lebanon 🇱🇧 · 2 Boxes $24 · Save $6 · Free gift · Free delivery · COD',
+      'From Tripoli → Lebanon 🇱🇧 · 2 Boxes $24 · Save $6 · Free delivery · COD',
     text_ar:
-      'من طرابلس → لبنان 🇱🇧 · علبتان $24 · وفّر ٦$ · هدية مجانية · توصيل مجاني · دفع عند الاستلام',
+      'من طرابلس → لبنان 🇱🇧 · علبتان $24 · وفّر ٦$ · توصيل مجاني · دفع عند الاستلام',
   },
   hero: {
     h1_en: 'Sticky Ear Cleaner — Feel clean 24/7',

@@ -63,12 +63,12 @@ async function loadSettings() {
           badge_ar: 'أفضل قيمة',
           label_en: '2 boxes',
           label_ar: 'علبتان',
-          meta_en: 'Save $6 vs buying two singles · Free gift',
-          meta_ar: 'وفّر ٦$ مقارنة بعلبتين منفصلتين · هدية مجانية',
+          meta_en: 'Save $6 vs buying two singles · Free delivery · COD',
+          meta_ar: 'وفّر ٦$ مقارنة بعلبتين منفصلتين · توصيل مجاني · دفع عند الاستلام',
           dm_en:
-            'Hi! I want to order 2 Boxes Sticky Ear Cleaner — $24. Cash on delivery + free gift please. Based in Tripoli, ships across Lebanon.',
+            'Hi! I want to order 2 Boxes Sticky Ear Cleaner — $24. Cash on delivery please. Based in Tripoli, ships across Lebanon.',
           dm_ar:
-            'مرحبا! أريد طلب علبتين منظف الأذن اللاصق — $24. الدفع عند الاستلام + هدية جميلة من فضلك. من طرابلس، توصيل لكل لبنان.',
+            'مرحبا! أريد طلب علبتين منظف الأذن اللاصق — $24. الدفع عند الاستلام من فضلك. من طرابلس، توصيل لكل لبنان.',
         },
       },
     }
@@ -329,7 +329,14 @@ function fillOrderPanel(offerId = currentOffer) {
           : offer.badge_en
   }
   if (orderSummary) {
-    const gift = ar ? 'هدية مجانية مع كل طلب' : 'Free gift with every order'
+    const gift =
+      String(offerId) === '2'
+        ? ar
+          ? 'توصيل مجاني · دفع عند الاستلام'
+          : 'Free delivery · COD'
+        : ar
+          ? 'هدية مجانية مع كل طلب'
+          : 'Free gift with every order'
     const priceHtml =
       offer.compare && offer.compare !== offer.now
         ? `<span><s>${offer.compare}</s> <b>${offer.now}</b></span>`

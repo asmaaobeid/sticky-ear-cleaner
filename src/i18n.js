@@ -14,7 +14,7 @@ export const translations = {
     announce_deal2_label: '2 boxes',
     announce_cta: 'Order now',
     topbar_text:
-      'From Tripoli → Lebanon 🇱🇧 · 2 Boxes $24 · Save $6 · Free gift · Free delivery · COD',
+      'From Tripoli → Lebanon 🇱🇧 · 2 Boxes $24 · Save $6 · Free delivery · COD',
     nav_hot: 'Hot Sale',
     nav_pin: 'Hot',
     nav_shop: 'Shop',
@@ -35,10 +35,10 @@ export const translations = {
     hero_offer1_title: '1 Box',
     hero_offer1_meta: 'Free gift · Free delivery · COD',
     hero_offer2_title: '2 Boxes',
-    hero_offer2_meta: 'Save $6 · Free gift · Free delivery · COD',
+    hero_offer2_meta: 'Save $6 · Free delivery · COD',
     hero_lead:
       'Soft sticky tips grab and lift wax gently — no pushing, no mess. A gentler everyday alternative to cotton swabs.',
-    hero_price: '2 Boxes — $24 — Save $6 + Free Gift + Free Delivery + COD',
+    hero_price: '2 Boxes — $24 — Save $6 + Free Delivery + COD',
     hero_confirm: 'Fill the short form (~2 minutes). We confirm on WhatsApp, then ship — you pay nothing now.',
     pitch_h2: 'Ditch the Q-Tips',
     pitch_p:
@@ -74,7 +74,7 @@ export const translations = {
     sale1_meta: '24 pcs · Soft silica gel tips · Free gift included',
     sale1_save: 'Free gift + free delivery with your order',
     sale2_title: '2 Boxes Bundle',
-    sale2_meta: 'Save $6 vs two singles · Free gift',
+    sale2_meta: 'Save $6 vs two singles · Free delivery · COD',
     sale2_save: 'Best value · Free delivery · COD',
     promo_gift_t: 'Free gift',
     promo_gift_d: 'Included with every order',
@@ -249,7 +249,7 @@ export const translations = {
     dm_msg_1:
       'Hi! I want to order 1 Box Sticky Ear Cleaner — $15. Cash on delivery + free gift please. Based in Tripoli, ships across Lebanon.',
     dm_msg_2:
-      'Hi! I want to order 2 Boxes Sticky Ear Cleaner — $24. Cash on delivery + free gift please. Based in Tripoli, ships across Lebanon.',
+      'Hi! I want to order 2 Boxes Sticky Ear Cleaner — $24. Cash on delivery please. Based in Tripoli, ships across Lebanon.',
     toast_copied_title: 'Order text copied',
     toast_copied_body: 'Instagram DM opened. Paste in the chat (Ctrl+V or long-press → Paste).',
     toast_wa_title: 'WhatsApp opened',
@@ -291,7 +291,7 @@ export const translations = {
     announce_deal2_label: 'علبتان',
     announce_cta: 'اطلب الآن',
     topbar_text:
-      'من طرابلس → لبنان 🇱🇧 · علبتان $24 · وفّر ٦$ · هدية مجانية · توصيل مجاني · دفع عند الاستلام',
+      'من طرابلس → لبنان 🇱🇧 · علبتان $24 · وفّر ٦$ · توصيل مجاني · دفع عند الاستلام',
     nav_hot: 'العروض',
     nav_pin: 'ساخن',
     nav_shop: 'تسوق',
@@ -313,10 +313,10 @@ export const translations = {
     hero_offer1_title: 'علبة واحدة',
     hero_offer1_meta: 'هدية مجانية · توصيل مجاني · دفع عند الاستلام',
     hero_offer2_title: 'علبتان',
-    hero_offer2_meta: 'وفّر ٦$ · هدية مجانية · توصيل مجاني · دفع عند الاستلام',
+    hero_offer2_meta: 'وفّر ٦$ · توصيل مجاني · دفع عند الاستلام',
     hero_lead:
       'رؤوس لاصقة ناعمة تمسك الشمع وترفعه بلطف — بلا دفع ولا فوضى. بديل يومي ألطف من الأعواد القطنية.',
-    hero_price: 'علبتان — $24 — وفّر ٦$ + هدية مجانية + توصيل مجاني + دفع عند الاستلام',
+    hero_price: 'علبتان — $24 — وفّر ٦$ + توصيل مجاني + دفع عند الاستلام',
     hero_confirm: 'عبّئ النموذج القصير (~دقيقتان). نؤكد على واتساب ثم نشحن — لا تدفع شيئاً الآن.',
     pitch_h2: 'اترك الأعواد القطنية',
     pitch_p:
@@ -354,7 +354,7 @@ export const translations = {
     sale1_meta: '٢٤ قطعة · رؤوس سيليكا جل ناعمة · هدية مجانية',
     sale1_save: 'هدية مجانية + توصيل مجاني مع طلبك',
     sale2_title: 'باقة علبتين',
-    sale2_meta: 'وفّر ٦$ مقارنة بعلبتين منفصلتين · هدية مجانية',
+    sale2_meta: 'وفّر ٦$ مقارنة بعلبتين منفصلتين · توصيل مجاني · دفع عند الاستلام',
     sale2_save: 'أفضل قيمة · توصيل مجاني · دفع عند الاستلام',
     promo_gift_t: 'هدية مجانية',
     promo_gift_d: 'مع كل طلب',
@@ -528,7 +528,7 @@ export const translations = {
     dm_msg_1:
       'مرحبا! أريد طلب علبة واحدة منظف الأذن اللاصق — $15. الدفع عند الاستلام + هدية مجانية من فضلك. من طرابلس، توصيل لكل لبنان.',
     dm_msg_2:
-      'مرحبا! أريد طلب علبتين منظف الأذن اللاصق — $24. الدفع عند الاستلام + هدية مجانية من فضلك. من طرابلس، توصيل لكل لبنان.',
+      'مرحبا! أريد طلب علبتين منظف الأذن اللاصق — $24. الدفع عند الاستلام من فضلك. من طرابلس، توصيل لكل لبنان.',
     toast_copied_title: 'تم نسخ نص الطلب',
     toast_copied_body: 'تم فتح إنستغرام. الصق الرسالة في المحادثة (اضغط مطولاً ← لصق).',
     toast_wa_title: 'تم فتح واتساب',
