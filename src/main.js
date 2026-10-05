@@ -47,12 +47,12 @@ async function loadSettings() {
           badge_ar: 'علبة واحدة',
           label_en: '1 box',
           label_ar: 'علبة',
-          meta_en: '24 pcs · Soft silica gel tips',
-          meta_ar: '٢٤ قطعة · رؤوس سيليكا جل ناعمة',
+          meta_en: 'Free gift · COD',
+          meta_ar: 'هدية مجانية · دفع عند الاستلام',
           dm_en:
-            'Hi! I want to order 1 Box Sticky Ear Cleaner — $15. Cash on delivery + free gift please. Based in Tripoli, ships across Lebanon.',
+            'Hi! I want to order 1 Box Sticky Ear Cleaner — $15. Cash on delivery + free gift please. Delivery fee may apply. Based in Tripoli.',
           dm_ar:
-            'مرحبا! أريد طلب علبة واحدة منظف الأذن اللاصق — $15. الدفع عند الاستلام + هدية مجانية من فضلك. من طرابلس، توصيل لكل لبنان.',
+            'مرحبا! أريد طلب علبة واحدة منظف الأذن اللاصق — $15. الدفع عند الاستلام + هدية مجانية من فضلك. قد تُحسب رسوم توصيل. من طرابلس.',
         },
         2: {
           compare: '',
@@ -335,8 +335,8 @@ function fillOrderPanel(offerId = currentOffer) {
           ? 'توصيل مجاني · دفع عند الاستلام'
           : 'Free delivery · COD'
         : ar
-          ? 'هدية مجانية مع كل طلب'
-          : 'Free gift with every order'
+          ? 'هدية مجانية · دفع عند الاستلام · قد تُحسب رسوم توصيل'
+          : 'Free gift · COD · Delivery fee may apply'
     const priceHtml =
       offer.compare && offer.compare !== offer.now
         ? `<span><s>${offer.compare}</s> <b>${offer.now}</b></span>`

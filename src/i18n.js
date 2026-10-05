@@ -33,7 +33,7 @@ export const translations = {
     hero_h1_short: 'Sticky Ear Cleaner',
     hero_problem: 'Cotton swabs push wax deeper. Soft sticky tips lift it out — gently.',
     hero_offer1_title: '1 Box',
-    hero_offer1_meta: 'Free gift · Free delivery · COD',
+    hero_offer1_meta: 'Free gift · COD',
     hero_offer2_title: '2 Boxes',
     hero_offer2_meta: 'Save $6 · Free delivery · COD',
     hero_lead:
@@ -72,7 +72,8 @@ export const translations = {
     badge_value: 'Best value',
     sale1_title: '1 Box Sticky Ear Cleaner',
     sale1_meta: '24 pcs · Soft silica gel tips · Free gift included',
-    sale1_save: 'Free gift + free delivery with your order',
+    sale1_save: 'Free gift · COD · Delivery fee may apply',
+    cod_note_1: 'Cash on delivery · Pay when you receive',
     sale2_title: '2 Boxes Bundle',
     sale2_meta: 'Save $6 vs two singles · Free delivery · COD',
     sale2_save: 'Best value · Free delivery · COD',
@@ -247,7 +248,7 @@ export const translations = {
     offer1_order: 'Place order — pay on delivery — 1 box — $15',
     offer2_order: 'Place order — pay on delivery — 2 boxes — $24',
     dm_msg_1:
-      'Hi! I want to order 1 Box Sticky Ear Cleaner — $15. Cash on delivery + free gift please. Based in Tripoli, ships across Lebanon.',
+      'Hi! I want to order 1 Box Sticky Ear Cleaner — $15. Cash on delivery + free gift please. Delivery fee may apply. Based in Tripoli.',
     dm_msg_2:
       'Hi! I want to order 2 Boxes Sticky Ear Cleaner — $24. Cash on delivery please. Based in Tripoli, ships across Lebanon.',
     toast_copied_title: 'Order text copied',
@@ -311,7 +312,7 @@ export const translations = {
     hero_local: 'من طرابلس → توصيل لكل لبنان 🇱🇧',
     hero_problem: 'الأعواد القطنية تدفع الشمع للداخل. الرؤوس اللاصقة الناعمة ترفعه بلطف.',
     hero_offer1_title: 'علبة واحدة',
-    hero_offer1_meta: 'هدية مجانية · توصيل مجاني · دفع عند الاستلام',
+    hero_offer1_meta: 'هدية مجانية · دفع عند الاستلام',
     hero_offer2_title: 'علبتان',
     hero_offer2_meta: 'وفّر ٦$ · توصيل مجاني · دفع عند الاستلام',
     hero_lead:
@@ -352,7 +353,8 @@ export const translations = {
     badge_value: 'أفضل قيمة',
     sale1_title: 'علبة واحدة منظف الأذن اللاصق',
     sale1_meta: '٢٤ قطعة · رؤوس سيليكا جل ناعمة · هدية مجانية',
-    sale1_save: 'هدية مجانية + توصيل مجاني مع طلبك',
+    sale1_save: 'هدية مجانية · دفع عند الاستلام · قد تُحسب رسوم توصيل',
+    cod_note_1: 'الدفع عند الاستلام · ادفع عندما يصلك الطلب',
     sale2_title: 'باقة علبتين',
     sale2_meta: 'وفّر ٦$ مقارنة بعلبتين منفصلتين · توصيل مجاني · دفع عند الاستلام',
     sale2_save: 'أفضل قيمة · توصيل مجاني · دفع عند الاستلام',
@@ -526,7 +528,7 @@ export const translations = {
     offer1_order: 'اطلب الآن — ادفع عند الاستلام — علبة — $15',
     offer2_order: 'اطلب الآن — ادفع عند الاستلام — علبتان — $24',
     dm_msg_1:
-      'مرحبا! أريد طلب علبة واحدة منظف الأذن اللاصق — $15. الدفع عند الاستلام + هدية مجانية من فضلك. من طرابلس، توصيل لكل لبنان.',
+      'مرحبا! أريد طلب علبة واحدة منظف الأذن اللاصق — $15. الدفع عند الاستلام + هدية مجانية من فضلك. قد تُحسب رسوم توصيل. من طرابلس.',
     dm_msg_2:
       'مرحبا! أريد طلب علبتين منظف الأذن اللاصق — $24. الدفع عند الاستلام من فضلك. من طرابلس، توصيل لكل لبنان.',
     toast_copied_title: 'تم نسخ نص الطلب',
