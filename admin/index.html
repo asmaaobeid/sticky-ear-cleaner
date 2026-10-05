@@ -30,15 +30,6 @@
         </label>
         <button type="submit" class="btn">Sign in</button>
         <p class="error" id="login-error" hidden>Wrong password</p>
-        <p class="hint" id="saved-pass-box" hidden>
-          Saved password: <code id="saved-pass-value"></code>
-        </p>
-        <button type="button" class="btn ghost" id="reveal-pass-btn">
-          Show saved password
-        </button>
-        <button type="button" class="btn ghost" id="reset-pass-btn">
-          Reset to admin@123#!
-        </button>
       </form>
     </div>
 
@@ -102,16 +93,27 @@
           <div class="form-grid" id="content-form">
             <label>Brand <input id="f-brand" /></label>
             <label>Instagram username <input id="f-instagram" /></label>
-            <label
-              >WhatsApp (961… no +)
+            <label>WhatsApp (961… no +)
               <input id="f-whatsapp" placeholder="96170123456"
             /></label>
             <label
-              >Admin password (current)
-              <input id="f-password" type="text" autocomplete="off" />
+              >Packs left this week
+              <input id="f-stock" type="number" min="0" step="1" placeholder="0 hides stock line" />
+            </label>
+            <p class="hint full">
+              Set how many packs are left this week. Use 0 to hide the limited-stock line on the site.
+            </p>
+            <label
+              >New admin password
+              <input
+                id="f-password"
+                type="password"
+                autocomplete="new-password"
+                placeholder="Leave blank to keep current"
+              />
             </label>
             <p class="hint full" id="pass-hint">
-              This field shows the saved password. Change it and click Save to update.
+              Leave blank to keep the current password. Enter a new one and click Save to change it.
             </p>
             <label>Announce live EN <input id="f-live-en" /></label>
             <label>Announce live AR <input id="f-live-ar" /></label>

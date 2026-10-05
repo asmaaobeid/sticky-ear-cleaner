@@ -66,26 +66,6 @@ async function start() {
     res.status(401).json({ error: 'Wrong password' })
   })
 
-  app.get('/api/admin/password', async (req, res) => {
-    const settings = await readJson(settingsPath, {})
-    if (req.headers['x-admin-password'] !== settings.adminPassword) {
-      return res.status(401).json({ error: 'Unauthorized' })
-    }
-    res.json({ password: settings.adminPassword || '' })
-  })
-
-  app.get('/api/admin/reveal-password', async (_req, res) => {
-    const settings = await readJson(settingsPath, {})
-    res.json({ password: settings.adminPassword || 'admin@123#!' })
-  })
-
-  app.post('/api/admin/reset-password', async (_req, res) => {
-    const settings = await readJson(settingsPath, {})
-    settings.adminPassword = 'admin@123#!'
-    await writeJson(settingsPath, settings)
-    res.json({ ok: true, password: 'admin@123#!' })
-  })
-
   app.get('/api/orders', async (req, res) => {
     const settings = await readJson(settingsPath, {})
     if (req.headers['x-admin-password'] !== settings.adminPassword) {

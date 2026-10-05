@@ -4,7 +4,7 @@ const LANG_KEY = 'myearglow-lang'
 
 let settings = null
 let currentLang = localStorage.getItem(LANG_KEY) || 'en'
-let currentOffer = '1'
+let currentOffer = '2'
 let preferredChannel = 'wa'
 
 function offerData(id = currentOffer) {
@@ -36,34 +36,39 @@ async function loadSettings() {
       brand: 'My Ear Glow',
       instagram: 'myearglow',
       whatsapp: '96179460039',
+      stockLeft: 0,
       offers: {
         1: {
-          compare: '$16',
+          compare: '',
           now: '$15',
           title_en: '1 Box Sticky Ear Cleaner',
           title_ar: 'علبة واحدة منظف الأذن اللاصق',
-          badge_en: 'Best sale',
-          badge_ar: 'أفضل عرض',
+          badge_en: '1 box',
+          badge_ar: 'علبة واحدة',
           label_en: '1 box',
           label_ar: 'علبة',
           meta_en: '24 pcs · Soft silica gel tips',
           meta_ar: '٢٤ قطعة · رؤوس سيليكا جل ناعمة',
-          dm_en: 'Hi! I want to order 1 Box Best Sale — $15 (was $16).',
-          dm_ar: 'مرحبا! أريد طلب علبة واحدة بأفضل عرض — $15 (بدلاً من $16).',
+          dm_en:
+            'Hi! I want to order 1 Box Sticky Ear Cleaner — $15. Cash on delivery + free gift please. Based in Tripoli, ships across Lebanon.',
+          dm_ar:
+            'مرحبا! أريد طلب علبة واحدة منظف الأذن اللاصق — $15. الدفع عند الاستلام + هدية مجانية من فضلك. من طرابلس، توصيل لكل لبنان.',
         },
         2: {
-          compare: '$30',
+          compare: '',
           now: '$24',
           title_en: '2 Boxes Bundle',
           title_ar: 'باقة علبتين',
-          badge_en: 'Hot Sale',
-          badge_ar: 'عرض ساخن',
+          badge_en: 'Best value',
+          badge_ar: 'أفضل قيمة',
           label_en: '2 boxes',
           label_ar: 'علبتان',
-          meta_en: 'Stock up · Same gentle sticky clean',
-          meta_ar: 'وفّر أكثر · نفس التنظيف اللطيف',
-          dm_en: 'Hi! I want to order 2 Boxes Hot Sale — $24 (was $30).',
-          dm_ar: 'مرحبا! أريد طلب علبتين بالعرض الساخن — $24 (بدلاً من $30).',
+          meta_en: 'Save $6 vs buying two singles · Free gift',
+          meta_ar: 'وفّر ٦$ مقارنة بعلبتين منفصلتين · هدية مجانية',
+          dm_en:
+            'Hi! I want to order 2 Boxes Sticky Ear Cleaner — $24. Cash on delivery + free gift please. Based in Tripoli, ships across Lebanon.',
+          dm_ar:
+            'مرحبا! أريد طلب علبتين منظف الأذن اللاصق — $24. الدفع عند الاستلام + هدية جميلة من فضلك. من طرابلس، توصيل لكل لبنان.',
         },
       },
     }
@@ -94,18 +99,17 @@ function applySettingsToDom() {
     setText('[data-i18n="announce_cta"]', ar ? settings.announce.cta_ar : settings.announce.cta_en)
   }
 
+  // Dedicated topbar copy (do not reuse announce.live — that was wiping "Free delivery")
+  if (settings.topbar) {
+    setText('[data-i18n="topbar_text"]', ar ? settings.topbar.text_ar : settings.topbar.text_en)
+  }
+
   if (settings.hero) {
     setText('[data-i18n="hero_h1"]', ar ? settings.hero.h1_ar : settings.hero.h1_en)
     setText('[data-i18n="hero_lead"]', ar ? settings.hero.lead_ar : settings.hero.lead_en)
   }
 
   // Announce deal prices
-  document.querySelectorAll('.announce-deal[data-dm-offer="1"] strong').forEach((el) => {
-    el.textContent = o1.now
-  })
-  document.querySelectorAll('.announce-deal[data-dm-offer="1"] s').forEach((el) => {
-    el.textContent = o1.compare
-  })
   document.querySelectorAll('.announce-deal[data-dm-offer="2"] strong').forEach((el) => {
     el.textContent = o2.now
   })
@@ -113,35 +117,24 @@ function applySettingsToDom() {
     el.textContent = o2.compare
   })
 
-  setText('.announce-deal[data-dm-offer="1"] [data-i18n="announce_deal1_label"]', ar ? o1.label_ar : o1.label_en)
   setText('.announce-deal[data-dm-offer="2"] [data-i18n="announce_deal2_label"]', ar ? o2.label_ar : o2.label_en)
 
-  // Sale cards
-  setText('.sale-card.featured h3', ar ? o1.title_ar : o1.title_en)
-  setText('.sale-card.featured .sale-meta', ar ? o1.meta_ar : o1.meta_en)
-  setText('.sale-card.featured .sale-badge', ar ? o1.badge_ar : o1.badge_en)
-  document.querySelectorAll('.sale-card.featured .price-was').forEach((el) => {
-    el.textContent = o1.compare
-  })
-  document.querySelectorAll('.sale-card.featured .price-now').forEach((el) => {
-    el.textContent = o1.now
-  })
-
-  const hotCard = document.querySelector('.sale-card:not(.featured)')
-  if (hotCard) {
-    const h3 = hotCard.querySelector('h3')
-    const meta = hotCard.querySelector('.sale-meta')
-    const badge = hotCard.querySelector('.sale-badge')
-    if (h3) h3.textContent = ar ? o2.title_ar : o2.title_en
-    if (meta) meta.textContent = ar ? o2.meta_ar : o2.meta_en
-    if (badge) badge.textContent = ar ? o2.badge_ar : o2.badge_en
-    hotCard.querySelectorAll('.price-was').forEach((el) => {
-      el.textContent = o2.compare
+  // Sale cards by offer id (titles + prices from settings; marketing meta stays in i18n)
+  ;['1', '2'].forEach((id) => {
+    const card = document.querySelector(`.sale-card[data-offer="${id}"]`)
+    const offer = settings.offers?.[id]
+    if (!card || !offer) return
+    const h3 = card.querySelector('h3')
+    if (h3) h3.textContent = ar ? offer.title_ar : offer.title_en
+    card.querySelectorAll('.price-was').forEach((el) => {
+      const show = Boolean(offer.compare && offer.compare !== offer.now)
+      el.hidden = !show
+      el.textContent = offer.compare || ''
     })
-    hotCard.querySelectorAll('.price-now').forEach((el) => {
-      el.textContent = o2.now
+    card.querySelectorAll('.price-now').forEach((el) => {
+      el.textContent = offer.now
     })
-  }
+  })
 
   // Offer picks
   const pick1 = document.querySelector('.offer-pick[data-offer="1"]')
@@ -149,14 +142,42 @@ function applySettingsToDom() {
   if (pick1) {
     const label = pick1.querySelector('.offer-label')
     const price = pick1.querySelector('.offer-price')
-    if (label) label.textContent = `${ar ? o1.label_ar : o1.label_en} · ${ar ? o1.badge_ar : o1.badge_en}`
-    if (price) price.innerHTML = `<s>${o1.compare}</s> <strong>${o1.now}</strong>`
+    if (label) label.textContent = `${ar ? o1.label_ar : o1.label_en}`
+    if (price) {
+      price.innerHTML =
+        o1.compare && o1.compare !== o1.now
+          ? `<s>${o1.compare}</s> <strong>${o1.now}</strong>`
+          : `<strong>${o1.now}</strong>`
+    }
   }
   if (pick2) {
     const label = pick2.querySelector('.offer-label')
     const price = pick2.querySelector('.offer-price')
-    if (label) label.textContent = `${ar ? o2.label_ar : o2.label_en} · ${ar ? o2.badge_ar : o2.badge_en}`
-    if (price) price.innerHTML = `<s>${o2.compare}</s> <strong>${o2.now}</strong>`
+    const popular = ar ? 'الأكثر طلباً' : 'Most popular'
+    if (label) label.textContent = `${ar ? o2.label_ar : o2.label_en} · ${popular}`
+    if (price) {
+      price.innerHTML =
+        o2.compare && o2.compare !== o2.now
+          ? `<s>${o2.compare}</s> <strong>${o2.now}</strong>`
+          : `<strong>${o2.now}</strong>`
+    }
+  }
+
+  const stickyPrice = document.getElementById('sticky-bar-price')
+  if (stickyPrice) stickyPrice.textContent = o2.now || '$24'
+
+  // Stock line (hide when stockLeft is 0 / missing)
+  const stockEl = document.getElementById('stock-line')
+  if (stockEl) {
+    const left = Number(settings.stockLeft)
+    if (Number.isFinite(left) && left > 0) {
+      stockEl.hidden = false
+      stockEl.textContent = ar
+        ? `بقي ${left} عبوة فقط هذا الأسبوع`
+        : `Only ${left} packs left this week`
+    } else {
+      stockEl.hidden = true
+    }
   }
 
   // Order modal choices
@@ -194,11 +215,12 @@ function applySettingsToDom() {
   if (orderHint) {
     orderHint.setAttribute('data-i18n', hasWhatsApp ? 'order_hint' : 'order_hint_ig')
   }
-  const floatOrder = document.getElementById('float-order')
-  if (floatOrder) {
-    floatOrder.href = hasWhatsApp ? `https://wa.me/${waPhone}` : '#'
-    floatOrder.setAttribute('data-channel', hasWhatsApp ? 'wa' : 'ig')
-  }
+
+  // Keep top-bar 2-box deal linked straight to WhatsApp with message
+  document.querySelectorAll('.js-direct-wa').forEach((a) => {
+    const offerId = a.getAttribute('data-dm-offer') || '2'
+    a.href = whatsappUrl(offerMessage(offerId))
+  })
 
   setOffer(currentOffer)
 }
@@ -271,7 +293,11 @@ function setOffer(id) {
   const offer = offerData(id)
   if (!offer) return
   currentOffer = String(id)
-  if (comparePrice) comparePrice.textContent = offer.compare
+  const showCompare = Boolean(offer.compare && offer.compare !== offer.now)
+  if (comparePrice) {
+    comparePrice.hidden = !showCompare
+    comparePrice.textContent = offer.compare || ''
+  }
   if (productPrice) productPrice.textContent = offer.now
   offerPicks.forEach((btn) => {
     btn.classList.toggle('is-active', btn.getAttribute('data-offer') === currentOffer)
@@ -282,8 +308,8 @@ function setOffer(id) {
   if (orderNow) {
     const label =
       currentLang === 'ar'
-        ? `اطلب الآن — ${offer.label_ar} — ${offer.now}`
-        : `Order now — ${offer.label_en} — ${offer.now}`
+        ? `اطلب الآن — ادفع عند الاستلام — ${offer.label_ar} — ${offer.now}`
+        : `Place order — pay on delivery — ${offer.label_en} — ${offer.now}`
     orderNow.textContent = label
   }
   fillOrderPanel(currentOffer)
@@ -292,11 +318,26 @@ function setOffer(id) {
 function fillOrderPanel(offerId = currentOffer) {
   const offer = offerData(offerId)
   const ar = currentLang === 'ar'
-  if (orderBadge) orderBadge.textContent = ar ? offer.badge_ar : offer.badge_en
+  if (orderBadge) {
+    orderBadge.textContent =
+      String(offerId) === '2'
+        ? ar
+          ? 'الأكثر طلباً'
+          : 'Most popular'
+        : ar
+          ? offer.badge_ar
+          : offer.badge_en
+  }
   if (orderSummary) {
+    const gift = ar ? 'هدية مجانية مع كل طلب' : 'Free gift with every order'
+    const priceHtml =
+      offer.compare && offer.compare !== offer.now
+        ? `<span><s>${offer.compare}</s> <b>${offer.now}</b></span>`
+        : `<span><b>${offer.now}</b></span>`
     orderSummary.innerHTML = `
       <strong>${ar ? offer.title_ar : offer.title_en}</strong>
-      <span><s>${offer.compare}</s> <b>${offer.now}</b></span>
+      ${priceHtml}
+      <em class="order-summary-gift">${gift}</em>
     `
   }
   if (orderMessage) orderMessage.value = offerMessage(offerId)
@@ -444,9 +485,21 @@ offerPicks.forEach((btn) => {
 
 document.addEventListener('click', (event) => {
   const link = event.target.closest(
-    '[data-dm-offer], .js-dm-current, #order-now, .float-order, .float-wa',
+    '[data-dm-offer], .js-dm-current, #order-now, .float-wa',
   )
   if (!link) return
+
+  // Direct WhatsApp (float button, top promo, etc.) — skip order form
+  if (link.classList.contains('js-direct-wa') || link.id === 'float-wa') {
+    event.preventDefault()
+    const offerId = link.getAttribute('data-dm-offer') || currentOffer
+    setOffer(offerId)
+    const message = offerMessage(offerId)
+    window.open(whatsappUrl(message), '_blank', 'noopener,noreferrer')
+    trackPixel('Contact', { content_name: 'direct_wa', content_ids: [String(offerId)] })
+    return
+  }
+
   event.preventDefault()
   const channel = link.getAttribute('data-channel') || preferredChannel
   openOrderPanel(link.getAttribute('data-dm-offer') || currentOffer, channel)
@@ -490,6 +543,7 @@ function applyLanguage(lang) {
     if (!key) return
     el.textContent = t(currentLang, key)
   })
+  document.title = t(currentLang, 'title')
 
   document.querySelectorAll('[data-i18n-content]').forEach((el) => {
     const key = el.getAttribute('data-i18n-content')
@@ -540,11 +594,18 @@ async function init() {
   await loadSettings()
   applyLanguage(currentLang)
   setupRevealAnimations()
+  trackPixel('ViewContent', {
+    content_name: 'Sticky Ear Cleaner',
+    content_ids: ['MEG-SEC-24'],
+    content_type: 'product',
+    value: 24,
+    currency: 'USD',
+  })
 }
 
 function setupRevealAnimations() {
   const targets = document.querySelectorAll(
-    '.pitch, .hot-sale .section-intro, .sale-card, .ig-order, .product, .icon-strip, .compare, .how, .story, .specs, .soft-proof, .guarantee, .faq',
+    '.pitch, .about-strip, .reviews, .demo-slot, .hot-sale .section-intro, .sale-card, .product, .icon-strip, .how, .story, .specs, .soft-proof, .guarantee, .faq',
   )
   if (!targets.length) return
 
@@ -554,8 +615,8 @@ function setupRevealAnimations() {
       el.classList.add(index % 2 === 0 ? 'reveal-delay-1' : 'reveal-delay-2')
       if (el.classList.contains('featured')) el.classList.add('reveal-scale')
     }
-    if (el.classList.contains('ig-order')) el.classList.add('reveal-delay-1')
-    if (el.classList.contains('compare') || el.classList.contains('how')) {
+    if (el.classList.contains('sale-card')) el.classList.add('reveal-delay-1')
+    if (el.classList.contains('how') || el.classList.contains('story')) {
       el.classList.add(index % 2 === 0 ? 'reveal-left' : 'reveal-right')
     }
   })

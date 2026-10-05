@@ -50,16 +50,6 @@ document.getElementById('show-login-pass').addEventListener('change', (e) => {
   document.getElementById('login-password').type = e.target.checked ? 'text' : 'password'
 })
 
-function showSavedPass(value) {
-  const box = document.getElementById('saved-pass-box')
-  const el = document.getElementById('saved-pass-value')
-  el.textContent = value
-  box.hidden = false
-  document.getElementById('login-password').value = value
-  document.getElementById('login-password').type = 'text'
-  document.getElementById('show-login-pass').checked = true
-}
-
 async function doLogin(value) {
   const pass = String(value || '').trim()
   if (!pass) throw new Error('Empty password')
@@ -91,30 +81,6 @@ loginForm.addEventListener('submit', async (e) => {
   }
 })
 
-document.getElementById('reveal-pass-btn').addEventListener('click', async () => {
-  try {
-    const data = await api('/api/admin/reveal-password')
-    showSavedPass(data.password)
-    loginError.hidden = true
-  } catch (err) {
-    alert(err.message || 'Could not load password')
-  }
-})
-
-document.getElementById('reset-pass-btn').addEventListener('click', async () => {
-  try {
-    const data = await api('/api/admin/reset-password', { method: 'POST' })
-    localStorage.removeItem(PASS_KEY)
-    password = ''
-    showSavedPass(data.password)
-    loginError.hidden = true
-    // Sign in immediately with the reset password
-    await doLogin(data.password)
-  } catch (err) {
-    alert(err.message || 'Reset failed')
-  }
-})
-
 document.getElementById('logout-btn').addEventListener('click', showLogin)
 
 document.querySelectorAll('.tab').forEach((tab) => {
@@ -128,8 +94,6 @@ document.querySelectorAll('.tab').forEach((tab) => {
 
 async function loadAll() {
   settings = await api('/api/settings')
-  const passInfo = await api('/api/admin/password', { auth: true }).catch(() => null)
-  if (passInfo?.password) settings.adminPassword = passInfo.password
   renderOffers()
   fillContent()
   await loadOrders()
@@ -165,8 +129,9 @@ function fillContent() {
   document.getElementById('f-brand').value = settings.brand || ''
   document.getElementById('f-instagram').value = settings.instagram || ''
   document.getElementById('f-whatsapp').value = settings.whatsapp || ''
-  document.getElementById('f-password').value = settings.adminPassword || password || ''
-  document.getElementById('f-password').placeholder = 'Current admin password'
+  document.getElementById('f-stock').value =
+    settings.stockLeft != null && settings.stockLeft !== '' ? settings.stockLeft : ''
+  document.getElementById('f-password').value = ''
   document.getElementById('f-live-en').value = settings.announce?.live_en || ''
   document.getElementById('f-live-ar').value = settings.announce?.live_ar || ''
   document.getElementById('f-ann-en').value = settings.announce?.label_en || ''
@@ -197,6 +162,7 @@ document.getElementById('save-content').addEventListener('click', async () => {
     brand: document.getElementById('f-brand').value,
     instagram: document.getElementById('f-instagram').value,
     whatsapp: document.getElementById('f-whatsapp').value,
+    stockLeft: Number(document.getElementById('f-stock').value || 0),
     announce: {
       ...settings.announce,
       live_en: document.getElementById('f-live-en').value,
@@ -221,9 +187,8 @@ document.getElementById('save-content').addEventListener('click', async () => {
   })
   if (newPass) {
     password = newPass
-    settings.adminPassword = newPass
     localStorage.setItem(PASS_KEY, password)
-    document.getElementById('f-password').value = newPass
+    document.getElementById('f-password').value = ''
   }
   flash('content-msg')
 })

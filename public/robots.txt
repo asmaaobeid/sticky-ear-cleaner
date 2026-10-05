@@ -1,5 +1,11 @@
 User-agent: *
 Allow: /
 Disallow: /admin
+Disallow: /admin/
 
-Sitemap: https://sticky-ear-cleaner.earglow.workers.dev/sitemap.xml
+User-agent: Googlebot
+Allow: /
+Disallow: /admin
+Disallow: /admin/
+
+Sitemap: https://earglowlb.com/sitemap.xml

@@ -3,51 +3,62 @@ const DEFAULT_SETTINGS = {
   brand: 'My Ear Glow',
   instagram: 'myearglow',
   whatsapp: '96179460039',
+  stockLeft: 0,
   offers: {
     1: {
-      compare: '$16',
+      compare: '',
       now: '$15',
       title_en: '1 Box Sticky Ear Cleaner',
       title_ar: 'علبة واحدة منظف الأذن اللاصق',
-      badge_en: 'Best sale',
-      badge_ar: 'أفضل عرض',
+      badge_en: '1 box',
+      badge_ar: 'علبة واحدة',
       label_en: '1 box',
       label_ar: 'علبة',
       meta_en: '24 pcs · Soft silica gel tips',
       meta_ar: '٢٤ قطعة · رؤوس سيليكا جل ناعمة',
-      dm_en: 'Hi! I want to order 1 Box Best Sale — $15 (was $16).',
-      dm_ar: 'مرحبا! أريد طلب علبة واحدة بأفضل عرض — $15 (بدلاً من $16).',
+      dm_en:
+        'Hi! I want to order 1 Box Sticky Ear Cleaner — $15. Cash on delivery + free gift please. Based in Tripoli, ships across Lebanon.',
+      dm_ar:
+        'مرحبا! أريد طلب علبة واحدة منظف الأذن اللاصق — $15. الدفع عند الاستلام + هدية مجانية من فضلك. من طرابلس، توصيل لكل لبنان.',
     },
     2: {
-      compare: '$30',
+      compare: '',
       now: '$24',
       title_en: '2 Boxes Bundle',
       title_ar: 'باقة علبتين',
-      badge_en: 'Hot Sale',
-      badge_ar: 'عرض ساخن',
+      badge_en: 'Best value',
+      badge_ar: 'أفضل قيمة',
       label_en: '2 boxes',
       label_ar: 'علبتان',
-      meta_en: 'Stock up · Same gentle sticky clean',
-      meta_ar: 'وفّر أكثر · نفس التنظيف اللطيف',
-      dm_en: 'Hi! I want to order 2 Boxes Hot Sale — $24 (was $30).',
-      dm_ar: 'مرحبا! أريد طلب علبتين بالعرض الساخن — $24 (بدلاً من $30).',
+      meta_en: 'Save $6 vs buying two singles · Free gift',
+      meta_ar: 'وفّر ٦$ مقارنة بعلبتين منفصلتين · هدية مجانية',
+      dm_en:
+        'Hi! I want to order 2 Boxes Sticky Ear Cleaner — $24. Cash on delivery + free gift please. Based in Tripoli, ships across Lebanon.',
+      dm_ar:
+        'مرحبا! أريد طلب علبتين منظف الأذن اللاصق — $24. الدفع عند الاستلام + هدية مجانية من فضلك. من طرابلس، توصيل لكل لبنان.',
     },
   },
   announce: {
-    live_en: 'Hurry — sale ends tonight!',
-    live_ar: 'أسرع — العرض ينتهي الليلة!',
+    live_en: 'Free delivery · Cash on delivery',
+    live_ar: 'توصيل مجاني · الدفع عند الاستلام',
     label_en: 'Hot Sale',
     label_ar: 'عرض ساخن',
-    cta_en: 'Shop now',
-    cta_ar: 'تسوق الآن',
+    cta_en: 'Order now',
+    cta_ar: 'اطلب الآن',
+  },
+  topbar: {
+    text_en:
+      'Free delivery across Lebanon · From $15 · 2 boxes $24 · Cash on delivery · Based in Tripoli',
+    text_ar:
+      'توصيل مجاني في كل لبنان · من $15 · علبتان $24 · الدفع عند الاستلام · من طرابلس',
   },
   hero: {
-    h1_en: 'Feel clean 24/7',
-    h1_ar: 'نظافة تدوم طوال اليوم',
+    h1_en: 'Sticky Ear Cleaner — Feel clean 24/7',
+    h1_ar: 'منظف الأذن اللاصق — نظافة تدوم طوال اليوم',
     lead_en:
-      'Soft sticky tips grab and lift wax gently — no pushing, no mess. Safer than cotton swabs.',
+      'Soft sticky tips grab and lift wax gently — no pushing, no mess. A gentler everyday alternative to cotton swabs.',
     lead_ar:
-      'رؤوس لاصقة ناعمة تمسك الشمع وترفعه بلطف — بلا دفع ولا فوضى. أكثر أماناً من الأعواد القطنية.',
+      'رؤوس لاصقة ناعمة تمسك الشمع وترفعه بلطف — بلا دفع ولا فوضى. بديل يومي ألطف من الأعواد القطنية.',
   },
 }
 
@@ -139,24 +150,6 @@ async function handleApi(request, env) {
     return json({ error: 'Wrong password' }, 401)
   }
 
-  if (path === '/api/admin/password' && method === 'GET') {
-    const settings = await getSettings(env)
-    if (!checkAdmin(request, settings)) return json({ error: 'Unauthorized' }, 401)
-    return json({ password: settings.adminPassword || '' })
-  }
-
-  if (path === '/api/admin/reveal-password' && method === 'GET') {
-    const settings = await getSettings(env)
-    return json({ password: settings.adminPassword || 'admin@123#!' })
-  }
-
-  if (path === '/api/admin/reset-password' && method === 'POST') {
-    const settings = await getSettings(env)
-    settings.adminPassword = 'admin@123#!'
-    await putSettings(env, settings)
-    return json({ ok: true, password: 'admin@123#!' })
-  }
-
   if (path === '/api/orders' && method === 'GET') {
     const settings = await getSettings(env)
     if (!checkAdmin(request, settings)) return json({ error: 'Unauthorized' }, 401)
@@ -219,9 +212,26 @@ async function handleApi(request, env) {
   return json({ error: 'Not found' }, 404)
 }
 
+const PRIMARY_HOST = 'earglowlb.com'
+
+function shouldRedirectToPrimary(hostname) {
+  if (!hostname) return false
+  if (hostname === PRIMARY_HOST) return false
+  if (hostname === `www.${PRIMARY_HOST}`) return true
+  if (hostname.endsWith('.workers.dev')) return true
+  return false
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url)
+
+    // Prefer HTTPS + primary host for SEO (avoid http / www / workers.dev duplicates)
+    if (url.protocol === 'http:' || shouldRedirectToPrimary(url.hostname)) {
+      const target = new URL(url.pathname + url.search, `https://${PRIMARY_HOST}`)
+      return Response.redirect(target.toString(), 301)
+    }
+
     if (url.pathname.startsWith('/api/')) {
       return handleApi(request, env)
     }
