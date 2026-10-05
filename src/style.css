@@ -627,6 +627,11 @@ html[dir="rtl"] .float-stack {
   max-width: 26rem;
 }
 
+.hero-offers--single {
+  grid-template-columns: 1fr;
+  max-width: 18rem;
+}
+
 .hero-offer {
   position: relative;
   display: grid;
