@@ -2142,7 +2142,23 @@ html[dir="rtl"] .steps li::before {
 }
 
 html[dir="rtl"] .hero-content {
-  margin-inline: auto 0;
+  margin-inline: auto;
+  text-align: center;
+}
+
+html[dir="rtl"] .hero-offers,
+html[dir="rtl"] .hero-actions,
+html[dir="rtl"] .hero-offer,
+html[dir="rtl"] .hero-local,
+html[dir="rtl"] .hero-problem,
+html[dir="rtl"] .hero-confirm {
+  margin-inline: auto;
+  text-align: center;
+}
+
+html[dir="rtl"] .hero-actions {
+  justify-content: center;
+  align-items: center;
 }
 
 html[dir="rtl"] .sale-badge,
