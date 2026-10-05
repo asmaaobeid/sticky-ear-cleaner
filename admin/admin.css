@@ -69,6 +69,7 @@ a {
   display: grid;
   place-items: center;
   padding: 1rem;
+  padding-left: calc(1rem + 10px);
 }
 
 .login-view[hidden],
