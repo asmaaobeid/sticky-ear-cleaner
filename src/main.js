@@ -605,7 +605,7 @@ async function init() {
 
 function setupRevealAnimations() {
   const targets = document.querySelectorAll(
-    '.pitch, .about-strip, .reviews, .hot-sale .section-intro, .sale-card, .product, .icon-strip, .how, .story, .specs, .soft-proof, .guarantee, .faq',
+    '.pitch, .about-strip, .reviews, .demo-slot, .hot-sale .section-intro, .sale-card, .product, .icon-strip, .how, .story, .specs, .soft-proof, .guarantee, .faq',
   )
   if (!targets.length) return
 
