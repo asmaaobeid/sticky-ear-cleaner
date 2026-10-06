@@ -8,4 +8,7 @@ Allow: /
 Disallow: /admin
 Disallow: /admin/
 
+User-agent: Googlebot-Image
+Allow: /
+
 Sitemap: https://earglowlb.com/sitemap.xml
