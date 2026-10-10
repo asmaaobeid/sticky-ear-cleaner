@@ -11,9 +11,22 @@ function offerData(id = currentOffer) {
   return settings?.offers?.[String(id)] || settings?.offers?.['1'] || {}
 }
 
+function withWebHelp(body, lang) {
+  const text = String(body || '').trim()
+  const lead =
+    lang === 'ar'
+      ? 'مرحبا! أنا قادم من الموقع وأحتاج مساعدة.'
+      : "Hi! I'm coming from the website and I need help."
+  if (!text) return lead
+  if (text.includes('قادم من الموقع') || text.includes('coming from the website')) return text
+  const rest = text.replace(/^(مرحبا!|Hi!)\s*/i, '')
+  return `${lead} ${rest}`
+}
+
 function offerMessage(offerId = currentOffer) {
   const o = offerData(offerId)
-  return currentLang === 'ar' ? o.dm_ar : o.dm_en
+  const lang = currentLang === 'ar' ? 'ar' : 'en'
+  return withWebHelp(lang === 'ar' ? o.dm_ar : o.dm_en, lang)
 }
 
 function igDm() {
@@ -50,9 +63,9 @@ async function loadSettings() {
           meta_en: 'COD · Delivery fee may apply',
           meta_ar: 'دفع عند الاستلام · قد تُحسب رسوم توصيل',
           dm_en:
-            'Hi! I want to order 1 Box Sticky Ear Cleaner — $15. Cash on delivery please. Delivery fee may apply. Based in Tripoli.',
+            "Hi! I'm coming from the website and I need help. I want to order 1 Box Sticky Ear Cleaner — $15. Cash on delivery please. Delivery fee may apply. Based in Tripoli.",
           dm_ar:
-            'مرحبا! أريد طلب علبة واحدة منظف الأذن اللاصق — $15. الدفع عند الاستلام من فضلك. قد تُحسب رسوم توصيل. من طرابلس.',
+            'مرحبا! أنا قادم من الموقع وأحتاج مساعدة. أريد طلب علبة واحدة منظف الأذن اللاصق — $15. الدفع عند الاستلام من فضلك. قد تُحسب رسوم توصيل. من طرابلس.',
         },
         2: {
           compare: '',
@@ -66,9 +79,9 @@ async function loadSettings() {
           meta_en: 'Save $6 vs buying two singles · Free delivery · COD',
           meta_ar: 'وفّر ٦$ مقارنة بعلبتين منفصلتين · توصيل مجاني · دفع عند الاستلام',
           dm_en:
-            'Hi! I want to order 2 Boxes Sticky Ear Cleaner — $24. Cash on delivery please. Based in Tripoli, ships across Lebanon.',
+            "Hi! I'm coming from the website and I need help. I want to order 2 Boxes Sticky Ear Cleaner — $24. Cash on delivery please. Based in Tripoli, ships across Lebanon.",
           dm_ar:
-            'مرحبا! أريد طلب علبتين منظف الأذن اللاصق — $24. الدفع عند الاستلام من فضلك. من طرابلس، توصيل لكل لبنان.',
+            'مرحبا! أنا قادم من الموقع وأحتاج مساعدة. أريد طلب علبتين منظف الأذن اللاصق — $24. الدفع عند الاستلام من فضلك. من طرابلس، توصيل لكل لبنان.',
         },
       },
     }

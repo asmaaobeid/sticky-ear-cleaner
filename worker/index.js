@@ -17,9 +17,9 @@ const DEFAULT_SETTINGS = {
       meta_en: 'COD · Delivery fee may apply',
       meta_ar: 'دفع عند الاستلام · قد تُحسب رسوم توصيل',
       dm_en:
-        'Hi! I want to order 1 Box Sticky Ear Cleaner — $15. Cash on delivery please. Delivery fee may apply. Based in Tripoli.',
+        "Hi! I'm coming from the website and I need help. I want to order 1 Box Sticky Ear Cleaner — $15. Cash on delivery please. Delivery fee may apply. Based in Tripoli.",
       dm_ar:
-        'مرحبا! أريد طلب علبة واحدة منظف الأذن اللاصق — $15. الدفع عند الاستلام من فضلك. قد تُحسب رسوم توصيل. من طرابلس.',
+        'مرحبا! أنا قادم من الموقع وأحتاج مساعدة. أريد طلب علبة واحدة منظف الأذن اللاصق — $15. الدفع عند الاستلام من فضلك. قد تُحسب رسوم توصيل. من طرابلس.',
     },
     2: {
       compare: '',
@@ -33,9 +33,9 @@ const DEFAULT_SETTINGS = {
       meta_en: 'Save $6 vs buying two singles · Free delivery · COD',
       meta_ar: 'وفّر ٦$ مقارنة بعلبتين منفصلتين · توصيل مجاني · دفع عند الاستلام',
       dm_en:
-        'Hi! I want to order 2 Boxes Sticky Ear Cleaner — $24. Cash on delivery please. Based in Tripoli, ships across Lebanon.',
+        "Hi! I'm coming from the website and I need help. I want to order 2 Boxes Sticky Ear Cleaner — $24. Cash on delivery please. Based in Tripoli, ships across Lebanon.",
       dm_ar:
-        'مرحبا! أريد طلب علبتين منظف الأذن اللاصق — $24. الدفع عند الاستلام من فضلك. من طرابلس، توصيل لكل لبنان.',
+        'مرحبا! أنا قادم من الموقع وأحتاج مساعدة. أريد طلب علبتين منظف الأذن اللاصق — $24. الدفع عند الاستلام من فضلك. من طرابلس، توصيل لكل لبنان.',
     },
   },
   announce: {
