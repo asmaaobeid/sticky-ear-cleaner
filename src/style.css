@@ -629,7 +629,7 @@ html[dir="rtl"] .float-stack {
 
 .hero-offers--single {
   grid-template-columns: 1fr;
-  max-width: 18rem;
+  max-width: 22rem;
 }
 
 .hero-offer {
@@ -680,9 +680,11 @@ html[dir="rtl"] .float-stack {
 }
 
 .hero-offer small {
-  font-size: 0.68rem;
-  line-height: 1.25;
-  color: rgba(255, 255, 255, 0.86);
+  font-size: 1.12rem;
+  font-weight: 800;
+  line-height: 1.35;
+  color: #fff;
+  margin-top: 0.25rem;
 }
 
 .hero-price {
