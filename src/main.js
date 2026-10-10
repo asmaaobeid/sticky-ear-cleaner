@@ -361,9 +361,50 @@ function fillOrderPanel(offerId = currentOffer) {
   if (orderSendWaBtn) orderSendWaBtn.textContent = t(currentLang, 'order_send_wa')
 }
 
-function trackPixel(event, data) {
+const META_PIXEL_ID = '1081769741266056'
+
+function pixelPhone(raw) {
+  let digits = String(raw || '').replace(/\D/g, '')
+  if (!digits) return ''
+  if (digits.startsWith('00')) digits = digits.slice(2)
+  if (digits.startsWith('0')) digits = `961${digits.slice(1)}`
+  if (digits.length === 8) digits = `961${digits}`
+  return digits
+}
+
+function pixelNameParts(raw) {
+  const parts = String(raw || '')
+    .trim()
+    .toLowerCase()
+    .replace(/[^\p{L}\s]/gu, '')
+    .split(/\s+/)
+    .filter(Boolean)
+  return {
+    fn: parts[0] || '',
+    ln: parts.slice(1).join(' '),
+  }
+}
+
+function setPixelCustomer({ name, phone } = {}) {
   try {
-    if (typeof window.fbq === 'function') window.fbq('track', event, data || {})
+    if (typeof window.fbq !== 'function') return
+    const match = { country: 'lb' }
+    const ph = pixelPhone(phone)
+    const { fn, ln } = pixelNameParts(name)
+    if (ph) match.ph = ph
+    if (fn) match.fn = fn
+    if (ln) match.ln = ln
+    window.fbq('init', META_PIXEL_ID, match)
+  } catch {
+    /* ignore */
+  }
+}
+
+function trackPixel(event, data, eventID) {
+  try {
+    if (typeof window.fbq !== 'function') return
+    if (eventID) window.fbq('track', event, data || {}, { eventID })
+    else window.fbq('track', event, data || {})
   } catch {
     /* ignore */
   }
@@ -452,18 +493,28 @@ async function sendOrder(channel = preferredChannel) {
 
   const offer = offerData(currentOffer)
   const value = Number(String(offer.now || '').replace(/[^0-9.]/g, '')) || 0
-  trackPixel('Lead', {
-    content_name: offer.title_en || `Offer ${currentOffer}`,
-    content_ids: [String(currentOffer)],
-    value,
-    currency: 'USD',
-  })
-  trackPixel('Purchase', {
-    content_name: offer.title_en || `Offer ${currentOffer}`,
-    content_ids: [String(currentOffer)],
-    value,
-    currency: 'USD',
-  })
+  const eventID = `lead-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`
+  setPixelCustomer({ name, phone })
+  trackPixel(
+    'Lead',
+    {
+      content_name: offer.title_en || `Offer ${currentOffer}`,
+      content_ids: [String(currentOffer)],
+      value,
+      currency: 'USD',
+    },
+    eventID,
+  )
+  trackPixel(
+    'Purchase',
+    {
+      content_name: offer.title_en || `Offer ${currentOffer}`,
+      content_ids: [String(currentOffer)],
+      value,
+      currency: 'USD',
+    },
+    eventID,
+  )
 
   closeOrderPanel()
   ;[orderSendBtn, orderSendWaBtn].forEach((btn) => {
