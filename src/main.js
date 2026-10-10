@@ -394,6 +394,7 @@ function setPixelCustomer({ name, phone } = {}) {
     if (ph) match.ph = ph
     if (fn) match.fn = fn
     if (ln) match.ln = ln
+    window.earglowPixel = match
     window.fbq('init', META_PIXEL_ID, match)
   } catch {
     /* ignore */

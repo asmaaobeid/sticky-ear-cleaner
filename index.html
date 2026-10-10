@@ -313,7 +313,12 @@
         s = b.getElementsByTagName(e)[0]
         s.parentNode.insertBefore(t, s)
       })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js')
-      fbq('init', '1081769741266056')
+      fbq('init', '1081769741266056', {
+        ph: window.earglowPixel && window.earglowPixel.ph,
+        fn: window.earglowPixel && window.earglowPixel.fn,
+        ln: window.earglowPixel && window.earglowPixel.ln,
+        country: 'lb',
+      })
       fbq('track', 'PageView')
     </script>
     <!-- End Meta Pixel Code -->
