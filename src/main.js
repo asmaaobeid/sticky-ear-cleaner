@@ -335,14 +335,6 @@ function fillOrderPanel(offerId = currentOffer) {
           : offer.badge_en
   }
   if (orderSummary) {
-    const gift =
-      String(offerId) === '2'
-        ? ar
-          ? 'توصيل مجاني · دفع عند الاستلام'
-          : 'Free delivery · COD'
-        : ar
-          ? 'دفع عند الاستلام · قد تُحسب رسوم توصيل'
-          : 'COD · Delivery fee may apply'
     const priceHtml =
       offer.compare && offer.compare !== offer.now
         ? `<span><s>${offer.compare}</s> <b>${offer.now}</b></span>`
@@ -350,7 +342,6 @@ function fillOrderPanel(offerId = currentOffer) {
     orderSummary.innerHTML = `
       <strong>${ar ? offer.title_ar : offer.title_en}</strong>
       ${priceHtml}
-      <em class="order-summary-gift">${gift}</em>
     `
   }
   if (orderMessage) orderMessage.value = offerMessage(offerId)
@@ -580,19 +571,6 @@ document.querySelectorAll('.order-choice').forEach((btn) => {
 
 orderSendBtn?.addEventListener('click', () => sendOrder('ig'))
 orderSendWaBtn?.addEventListener('click', () => sendOrder('wa'))
-
-document.getElementById('order-copy')?.addEventListener('click', async () => {
-  const message = buildCustomerMessage(currentOffer)
-  const ok = await copyText(message)
-  const btn = document.getElementById('order-copy')
-  if (btn && ok) {
-    const prev = btn.textContent
-    btn.textContent = t(currentLang, 'order_copied')
-    setTimeout(() => {
-      btn.textContent = prev
-    }, 1600)
-  }
-})
 
 function applyLanguage(lang) {
   currentLang = lang === 'ar' ? 'ar' : 'en'
