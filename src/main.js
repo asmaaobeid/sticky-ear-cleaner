@@ -11,12 +11,15 @@ function offerData(id = currentOffer) {
   return settings?.offers?.[String(id)] || settings?.offers?.['1'] || {}
 }
 
+function webHelpLine(lang = currentLang) {
+  return lang === 'ar'
+    ? 'مرحبا! أنا قادم من الموقع وأحتاج مساعدة.'
+    : "Hi! I'm coming from the website and I need help."
+}
+
 function withWebHelp(body, lang) {
   const text = String(body || '').trim()
-  const lead =
-    lang === 'ar'
-      ? 'مرحبا! أنا قادم من الموقع وأحتاج مساعدة.'
-      : "Hi! I'm coming from the website and I need help."
+  const lead = webHelpLine(lang)
   if (!text) return lead
   if (text.includes('قادم من الموقع') || text.includes('coming from the website')) return text
   const rest = text.replace(/^(مرحبا!|Hi!)\s*/i, '')
@@ -235,8 +238,13 @@ function applySettingsToDom() {
     orderHint.setAttribute('data-i18n', hasWhatsApp ? 'order_hint' : 'order_hint_ig')
   }
 
-  // Keep top-bar 2-box deal linked straight to WhatsApp with message
+  // Keep top-bar 2-box deal linked straight to WhatsApp with message.
+  // The round button only says the customer came from the website and needs help.
   document.querySelectorAll('.js-direct-wa').forEach((a) => {
+    if (a.id === 'float-wa') {
+      a.href = whatsappUrl(webHelpLine())
+      return
+    }
     const offerId = a.getAttribute('data-dm-offer') || '2'
     a.href = whatsappUrl(offerMessage(offerId))
   })
@@ -561,11 +569,15 @@ document.addEventListener('click', (event) => {
   // Direct WhatsApp (float button, top promo, etc.) — skip order form
   if (link.classList.contains('js-direct-wa') || link.id === 'float-wa') {
     event.preventDefault()
+    const fromFloat = link.id === 'float-wa'
     const offerId = link.getAttribute('data-dm-offer') || currentOffer
-    setOffer(offerId)
-    const message = offerMessage(offerId)
+    if (!fromFloat) setOffer(offerId)
+    const message = fromFloat ? webHelpLine() : offerMessage(offerId)
     window.open(whatsappUrl(message), '_blank', 'noopener,noreferrer')
-    trackPixel('Contact', { content_name: 'direct_wa', content_ids: [String(offerId)] })
+    trackPixel('Contact', {
+      content_name: fromFloat ? 'float_wa' : 'direct_wa',
+      content_ids: [String(offerId)],
+    })
     return
   }
 
