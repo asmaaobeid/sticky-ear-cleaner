@@ -14,12 +14,12 @@ const DEFAULT_SETTINGS = {
       badge_ar: 'علبة واحدة',
       label_en: '1 box',
       label_ar: 'علبة',
-      meta_en: 'COD · Delivery fee may apply',
-      meta_ar: 'دفع عند الاستلام · قد تُحسب رسوم توصيل',
+      meta_en: 'Free delivery · COD',
+      meta_ar: 'توصيل مجاني · دفع عند الاستلام',
       dm_en:
-        "Hi! I'm coming from the website and I need help. I want to order 1 Box Sticky Ear Cleaner — $15. Cash on delivery please. Delivery fee may apply. Based in Tripoli.",
+        "Hi! I'm coming from the website and I need help. I want to order 1 Box Sticky Ear Cleaner — $15. Cash on delivery please. Free delivery. Based in Tripoli.",
       dm_ar:
-        'مرحبا! أنا قادم من الموقع وأحتاج مساعدة. أريد طلب علبة واحدة منظف الأذن اللاصق — $15. الدفع عند الاستلام من فضلك. قد تُحسب رسوم توصيل. من طرابلس.',
+        'مرحبا! أنا قادم من الموقع وأحتاج مساعدة. أريد طلب علبة واحدة منظف الأذن اللاصق — $15. الدفع عند الاستلام من فضلك. توصيل مجاني. من طرابلس.',
     },
     2: {
       compare: '',
